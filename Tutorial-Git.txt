@@ -1,0 +1,18 @@
+Tutorial GitHub – Baixar e Receber Atualizações
+
+Após instalar a ferramenta Git Bash realizar a seguinte sequencia de passos:
+
+1.	Criar pasta no PC
+2.	Clicar com botão direito e selecionar “Git Bash Here”
+3.	Copia o endereço do seu repositorio
+4.	Escreva “git clone “ e colar no cmd o link com Shift+Insert
+5.	Escreva “cd “ e o nome do repositorio, escreva o inicio e aperte TAB para autocompletar
+6.	Escreva “git pull” para pegar atualizações de alterações feitas no site
+
+
+Tutorial GitHub – Enviar Atualizações
+
+1.	Faça as alterações antes de enviar a atualização para o servidor remoto
+2.	Escreva “git add .”
+3.	Escreva “git commit –m “mexi local”
+4.	Escreva “git push”, inform seu email e espere ser solicitada a senha, pode ser no cmd ou em um aplicativo externo.
