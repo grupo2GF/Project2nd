@@ -1,0 +1,81 @@
+@font-face {
+    font-family: Euclid;
+    src: url(util/Euclid.woff);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    background-color: #000;
+}
+
+header {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    background-color: #000;
+    filter: opacity(20%);
+}
+
+.conteudo {
+    font-family: Euclid;
+    margin-top: 15%;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#00000077);
+    justify-content: center;
+    align-items: center;
+}
+
+.mainTexto {
+    color: #000000cb;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.mainTextoMenor {
+    color: #dbc59b;
+    font-size: 18px;
+}
+
+nav {
+    position: fixed;
+    transition: left 0.5s linear;
+    background-color: black;
+    z-index: 2;
+}
+
+.navbar-brand {
+    margin-left: 25%;
+}
+
+.botaoHeader {
+    background-color: #c1943d;
+    color: black;
+    border: 0px;
+    width: 150px;
+    height: 50px;
+    margin-top: 50px;
+}
+
+.botaoHeader:hover {
+    background-color: #dbc59b;
+    color: black;
+    border: 1px white;
+}
