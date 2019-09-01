@@ -1,3 +1,1 @@
-# Project2nd
-
-![](/Media/logoTransparente.png)
+![](/Media/logoCapa.png)
