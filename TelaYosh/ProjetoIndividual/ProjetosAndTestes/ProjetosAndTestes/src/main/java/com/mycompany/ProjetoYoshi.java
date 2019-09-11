@@ -10,14 +10,14 @@ import java.util.Random;
 
 /**
  *
- * @author regino.neto
+ * @author saulo.oliveira
  */
-public class TelaYoshi extends javax.swing.JFrame {
+public class ProjetoYoshi extends javax.swing.JFrame {
 
     /**
      * Creates new form Teste
      */
-    public TelaYoshi() {
+    public ProjetoYoshi() {
         initComponents();
     }
 
@@ -50,7 +50,7 @@ public class TelaYoshi extends javax.swing.JFrame {
 
         jLabel3.setText("Disco:");
 
-        btnStatus.setText("Verificar Status");
+        btnStatus.setText("STATUS");
         btnStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStatusActionPerformed(evt);
@@ -70,35 +70,40 @@ public class TelaYoshi extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(btnStatus))
+                        .addGap(21, 21, 21)
+                        .addComponent(lblResultado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pbProgresso3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(pbProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(pbProgresso2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(48, 48, 48)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(pbProgresso3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(pbProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(pbProgresso2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(statsCPU)
                             .addComponent(statsRAM)
-                            .addComponent(statsDisco))))
-                .addContainerGap(135, Short.MAX_VALUE))
-            .addComponent(lblResultado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(statsDisco))
+                        .addGap(0, 61, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -119,7 +124,7 @@ public class TelaYoshi extends javax.swing.JFrame {
                     .addComponent(statsDisco))
                 .addGap(31, 31, 31)
                 .addComponent(btnStatus)
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblResultado, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
         );
 
@@ -128,24 +133,27 @@ public class TelaYoshi extends javax.swing.JFrame {
 
     private void btnStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatusActionPerformed
         Random sorteador = new Random();
-        Integer serverStatusCPU = sorteador.nextInt(100) +1;
-        Integer serverStatusRAM = sorteador.nextInt(100) +1;
-        Integer serverStatusDisco = sorteador.nextInt(100) +1;
-        pbProgresso.setValue(serverStatusCPU);
-        pbProgresso2.setValue(serverStatusRAM);
-        pbProgresso3.setValue(serverStatusDisco);
-        if(pbProgresso.getValue() == 100 || pbProgresso2.getValue() == 100
-        ||pbProgresso3.getValue() == 100){
-            lblResultado.setText(String.format("Servidor Indisponível"));
+        Integer dadosCPU = sorteador.nextInt(100) + 1;
+        Integer dadosRAM = sorteador.nextInt(100) + 1;
+        Integer dadosDisco = sorteador.nextInt(100) + 1;
+
+        pbProgresso.setValue(dadosCPU);
+        pbProgresso2.setValue(dadosRAM);
+        pbProgresso3.setValue(dadosDisco);
+
+        if (pbProgresso.getValue() == 100 || pbProgresso2.getValue() == 100
+                || pbProgresso3.getValue() == 100) {
+            lblResultado.setText(String.format("Atenção! Servidor sobrecarregado."));
             lblResultado.setForeground(Color.red);
-        }else{
-            lblResultado.setText(String.format("Servidor Disponível"));
-            lblResultado.setForeground(Color.blue);
+        } else {
+            lblResultado.setText(String.format("Servidor Online"));
+            lblResultado.setForeground(Color.green);
         }
-        statsCPU.setText(serverStatusCPU + "%");
-        statsRAM.setText(serverStatusRAM + "%");
-        statsDisco.setText(serverStatusDisco + "%");
-        
+
+        statsCPU.setText(dadosCPU + "%");
+        statsRAM.setText(dadosRAM + "%");
+        statsDisco.setText(dadosDisco + "%");
+
     }//GEN-LAST:event_btnStatusActionPerformed
 
     /**
@@ -165,21 +173,23 @@ public class TelaYoshi extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaYoshi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProjetoYoshi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaYoshi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProjetoYoshi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaYoshi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProjetoYoshi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaYoshi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProjetoYoshi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaYoshi().setVisible(true);
+                new ProjetoYoshi().setVisible(true);
             }
         });
     }
