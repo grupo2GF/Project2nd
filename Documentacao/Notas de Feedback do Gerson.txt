@@ -3,6 +3,7 @@ Alertas:
 - Adicionar campos que faltam no banco (ex:processos)
 - Colaboração entre o grupo
 - Atenção a SO e Linguagem de Programação para Regino, todas as materias para o Pardo.
+- Planejamento e utilização do planner
 
 
 Nova sugestão de escopo da inovação do projeto:
