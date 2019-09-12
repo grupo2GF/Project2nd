@@ -1,0 +1,12 @@
+Alertas:
+- Definir corretamente o Escopo
+- Adicionar campos que faltam no banco (ex:processos)
+- Colaboração entre o grupo
+- Atenção a SO e Linguagem de Programação para Regino, todas as materias para o Pardo.
+
+
+Nova sugestão de escopo da inovação do projeto:
+Fornecer monitoramento do status do servidor de streamming para o operador de NOC, para poder prever incidentes e mitigalos, dando a capacidade de manter a alta disponibilidade do sistema.
+Além disso buscamos garantir a segurança do sistema atraves da auditoria do banco de dados verificando se os servidores estão sendo acessadas pelos operadores que possuem o nivel correto de permissionamento.
+
+
