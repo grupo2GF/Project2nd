@@ -30,7 +30,7 @@
             <div class="mainTextoMenor">
                 <div class="LoginForm" id="loginEntrar">
                     <p class="loginTitulo">Entrar</p>
-                    <form id="formularioLogin" method="POST" onsubmit="return entrar();">
+                    <form id="formularioLogin" method="POST" onsubmit="return entrar() ">
                         <input type="text" placeholder="Endereço de email">
                         <br>
                         <input type="password" placeholder="Senha">
@@ -68,10 +68,20 @@
 </html>
 
 <script>
+    
     function abrirRegistro() {
         loginEntrar.style.display = "none";
         loginCadastro.style.display = "inline-block";
     }
+
+    verificarAutenticacao();
+    
+    function verificarAutenticacao() {
+        if (sessionStorage.nome != undefined) {
+            window.location.href = 'views/areaInterna.html';
+        }
+    }
+
     function entrar() {
         espera();
         var form = new URLSearchParams(newFormaData(formularioLogin));
@@ -83,7 +93,7 @@
             if (response.ok){
                 response.json().then(function(resposta){
                     sessionStorage.nome = resposta.nomeUsuario;
-                    
+                    verificarAutenticacao();
                 });
             }else{
                 console.log("Erro ao tentar se conectar");
@@ -92,10 +102,12 @@
         });
         return false;
     }
+
     function espera() {
         btnLogin.disable = true;
         
     }
+    
     function fimEspera() {
         btnLogin.disable = false;
     }
