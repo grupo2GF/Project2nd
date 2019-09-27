@@ -8,7 +8,8 @@
     <link rel="icon" href="img/dotGetGame.png">
 
     <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="css/styleLogin.css">
     <title>.getGame() - Entrar</title>
@@ -29,7 +30,7 @@
             <div class="mainTextoMenor">
                 <div class="LoginForm" id="loginEntrar">
                     <p class="loginTitulo">Entrar</p>
-                    <form>
+                    <form id="formularioLogin" method="POST" onsubmit="return entrar();">
                         <input type="text" placeholder="Endereço de email">
                         <br>
                         <input type="password" placeholder="Senha">
@@ -40,8 +41,8 @@
                     </form>
                 </div>
 
-                <div class="LoginForm" id="loginCadastro" style="display: none;">
-                    <p class="loginTitulo">Registrar Conta</p>
+                <div class="CadastrarForm" id="Cadastro" style="display: none;">
+                    <p class="cadastrarTitulo">Registrar Conta</p>
                     <form>
                         <input type="text" placeholder="Endereço de email">
                         <br>
@@ -49,7 +50,7 @@
                         <br>
                         <input type="password" placeholder="Confirmar Senha">
                         <br>
-                        <button class="btnLogin">REGISTRAR</button>
+                        <button class="btnCadastrar">REGISTRAR</button>
                     </form>
                 </div>
 
@@ -70,5 +71,32 @@
     function abrirRegistro() {
         loginEntrar.style.display = "none";
         loginCadastro.style.display = "inline-block";
+    }
+    function entrar() {
+        espera();
+        var form = new URLSearchParams(newFormaData(formularioLogin));
+        fetch("/usuarios/entrar", {
+            method: "POST",
+            body: "form"
+
+        }).then(function (response){
+            if (response.ok){
+                response.json().then(function(resposta){
+                    sessionStorage.nome = resposta.nomeUsuario;
+                    
+                });
+            }else{
+                console.log("Erro ao tentar se conectar");
+                fimEspera();
+            }
+        });
+        return false;
+    }
+    function espera() {
+        btnLogin.disable = true;
+        
+    }
+    function fimEspera() {
+        btnLogin.disable = false;
     }
 </script>
