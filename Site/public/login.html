@@ -30,7 +30,7 @@
             <div class="mainTextoMenor">
                 <div class="LoginForm" id="loginEntrar">
                     <p class="loginTitulo">Entrar</p>
-                    <form id="formularioLogin" method="POST" onsubmit="return entrar() ">
+                    <form id="formularioLogin" method="POST" onsubmit="return entrar()">
                         <input id="login" name="login" type="text" placeholder="Endereço de email">
                         <br>
                         <input id="senha" name="senha" type="password" placeholder="Senha">
@@ -84,16 +84,19 @@
 
     function entrar() {
         espera();
-        var form = new URLSearchParams(newFormaData(formularioLogin));
+        var form = new URLSearchParams(new FormData(formularioLogin));
         fetch("/usuarios/entrar", {
             method: "POST",
-            body: "form"
+            body: form
 
         }).then(function (response){
             if (response.ok){
-                response.json().then(function(resposta){
+
+                response.json().then(function (resposta){
+
                     sessionStorage.nome = resposta.nomeUsuario;
                     verificarAutenticacao();
+                    
                 });
             }else{
                 console.log("Erro ao tentar se conectar");
