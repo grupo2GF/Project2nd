@@ -5,10 +5,10 @@ create table tbFuncionario(
 );
 
 create table tbUsuario(
-        codUsuario int primary key identity(1,1),
-        loginUsuario varchar(40) not null,
-        senhaUsuario varchar(255) not null,
-        codFuncionario int foreign key (codFuncionario) references tbFuncionario(codFuncionario)
+    codUsuario int primary key identity(1,1),
+    loginUsuario varchar(40) not null,
+    senhaUsuario varchar(255) not null,
+    codFuncionario int foreign key (codFuncionario) references tbFuncionario(codFuncionario)
 );
 
 create table tbServidor(
@@ -16,7 +16,6 @@ create table tbServidor(
     linkServidor varchar(100) not null,
     loginServidor varchar(70) not null,
     senhaServidor varchar(255) not null,
-	situacaoServidor varchar(100) not null
 );
     
     
@@ -25,6 +24,8 @@ create table tbStatusServidor(
     cpuStatusServidor float not null,
     ramStatusServidor float not null,
     discoStatusServidor int not null,
+	situacaoStatusServidor varchar(100) not null,
+	tempoOnStatusServidor time not null,
     codServidor int foreign key (codServidor) references tbServidor(codServidor)
 );
 
@@ -47,10 +48,10 @@ insert into tbUsuario values
 ('Livia', '123459876', 3);
 
 insert into tbServidor values
-('regino.database.windows.net', 'bandtec', 'senhaqualquer', 'on');
+('regino.database.windows.net', 'bandtec', 'senhaqualquer');
 
 insert into tbStatusServidor values
-(10, 10, 1000, 1);
+(10, 10, 1000, 1,'on', TIME);
 
 insert into tbProcessoServidor values
 ('Redmi', 80.0, 80.0, 1);
