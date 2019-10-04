@@ -248,10 +248,10 @@
                   Logs de Atividade
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <button class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" onclick="logoff()">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Sair
-                </a>
+                  Logout
+                </button>
               </div>
             </li>
 
@@ -503,7 +503,8 @@
   function verificarAutenticacao() {
         usuario = sessionStorage.nome;
         if (usuario == undefined) {
-            window.location.href = '../index.html';
+            window.location.href = '../login.html';
+            logoff();
         } else {
             b_usuario.innerHTML = usuario;
         }
