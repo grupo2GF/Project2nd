@@ -4,10 +4,10 @@ var router = express.Router();
 var banco = require('../app-banco');
 // não mexa nessas 3 linhas!
 
-router.get('/servidores', function (req, res, next) {
+router.get('/servidor', function (req, res, next) {
     console.log(banco.conexao);
     banco.conectar().then(() => {
-      return banco.sql.query(`select (loginServidor, linkServidor, situacaoServidor) from tbServidor`);
+      return banco.sql.query(`select loginServidor, linkServidor, situacaoServidor from tbServidor`);
     }).then(consulta => {
   
       console.log(`Resultado da consulta de serviços: ${JSON.stringify(consulta.recordset)}`);

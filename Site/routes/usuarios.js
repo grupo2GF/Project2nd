@@ -18,7 +18,7 @@ router.post('/entrar', function (req, res, next) {
 
     console.log(`Usuários encontrados: ${JSON.stringify(consulta.recordset)}`);
 
-    if (consulta.recordset.length==1) {
+    if (consulta.recordset.length > 0) {
       res.send(consulta.recordset[0]);
     } else {
       res.sendStatus(404);
