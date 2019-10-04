@@ -228,20 +228,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btListarHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarHDActionPerformed
-      new HardDisk().setVisible(true); 
-      dispose();
+      AquisicaoDados aquisicaoDados = new AquisicaoDados();
+      aquisicaoDados.getDisco();
+      
        
         
     }//GEN-LAST:event_btListarHDActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        new MemoriaRAM().setVisible(true);
-        dispose();
+        AquisicaoDados aquisicaoDados = new AquisicaoDados();
+        aquisicaoDados.getRAM();
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        new CPU().setVisible(true);
-        dispose();
+        AquisicaoDados aquisicaoDados = new AquisicaoDados();
+        aquisicaoDados.getCPU();
+        
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
