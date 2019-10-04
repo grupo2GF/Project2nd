@@ -85,7 +85,7 @@
     function entrar() {
         espera();
         var form = new URLSearchParams(new FormData(formularioLogin));
-        fetch("/usuarios/entrar", {
+        fetch(`/usuarios/entrar`, {
             method: "POST",
             body: form
 
