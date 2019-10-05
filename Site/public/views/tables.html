@@ -67,7 +67,6 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Components:</h6>
             <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
           </div>
         </div>
       </li>
@@ -83,8 +82,7 @@
             <h6 class="collapse-header">Custom Utilities:</h6>
             <a class="collapse-item" href="utilities-color.html">Colors</a>
             <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
+            <a class="collapse-item" href="utilities-animation.html">Animations</a>   
           </div>
         </div>
       </li>
@@ -105,23 +103,9 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
             <a class="collapse-item" href="blank.html">Blank Page</a>
           </div>
         </div>
-      </li>
-
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
@@ -279,7 +263,30 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Servidores</h1>
+          <h1 class="h3 mb-2 text-gray-800">Servidores</h1> <br>
+
+          <div class="card bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header">Registre seu servidor</div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Nome do servidor</label>
+                      <input type="text" class="form-control" id="exampleInputServidor" aria-describedby="emailHelp" placeholder="Digite o nome do servidor">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Link do servidor</label>
+                        <input type="text" class="form-control" id="exampleInputLink" aria-describedby="emailHelp" placeholder="Digite o link do servidor">
+                      </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Senha</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Digite a senha">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                  </form>
+              <!-- <h5 class="card-title">Light card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+            </div>
+          </div> <br>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -378,18 +385,18 @@
 
 </html>
 <script>
-    verificarAutenticacao();
-    listarServidores();
+    // verificarAutenticacao();
+    // listarServidores();
     
-    function verificarAutenticacao() {
-        usuario = sessionStorage.nome;
-        if (usuario == undefined) {
-            window.location.href = '../login.html';
-            logoff();
-        } else {
-            b_usuario.innerHTML = usuario;
-        }
-    }
+    // function verificarAutenticacao() {
+    //     usuario = sessionStorage.nome;
+    //     if (usuario == undefined) {
+    //         window.location.href = '../login.html';
+    //         logoff();
+    //     } else {
+    //         b_usuario.innerHTML = usuario;
+    //     }
+    // }
   
       function logoff() {
           sessionStorage.removeItem('nome');
