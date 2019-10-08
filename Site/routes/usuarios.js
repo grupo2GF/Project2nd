@@ -39,7 +39,6 @@ router.post('/entrar', function (req, res, next) {
 
 router.post('/cadastrar', function (req, res, next) {
 
-  var nome;
   var login;
   var senha;
   var cadastro_valido = false;

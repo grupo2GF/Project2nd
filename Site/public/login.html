@@ -74,41 +74,41 @@
         loginCadastro.style.display = "inline-block";
     }
 
-    // verificarAutenticacao();
+    verificarAutenticacao();
     
-    // function verificarAutenticacao() {
-    //     if (sessionStorage.nome != undefined) {
-    //         window.location.href = 'views/index.html';
-    //     }
-    // }
+    function verificarAutenticacao() {
+        if (sessionStorage.nome != undefined) {
+            sessionStorage.setItem('nome', login.value);
+            window.location.href = 'views/index.html';
+        }
+    }
 
-    // function entrar() {
-    //     espera();
-    //     var form = new URLSearchParams(new FormData(formularioLogin));
-    //     fetch(`/usuarios/entrar`, {
-    //         method: "POST",
-    //         body: form
+    function entrar() {
+        espera();
+        var form = new URLSearchParams(new FormData(formularioLogin));
+        fetch(`/usuarios/entrar`, {
+        method: "POST",
+        body: form
 
-    //     }).then(function (response){
-    //         if (response.ok){
+    }).then(function (response){
+        if (response.ok){
 
-    //             response.json().then(function (resposta){
+        response.json().then(function (resposta){
 
-    //                 sessionStorage.nome = resposta.nomeUsuario;
-    //                 verificarAutenticacao();
+        sessionStorage.nome = resposta.nomeUsuario;
+        verificarAutenticacao();
                     
-    //             });
-    //         }else{
-    //             console.log("Erro ao tentar se conectar");
-    //             fimEspera();
-    //         }
-    //     });
-    //     return false;
-    // }
+    });
+        }else{
+            console.log("Erro ao tentar se conectar");
+            fimEspera();
+        }
+    });
+        return false;
+    }
 
     function espera() {
         btnLogin.disable = true;
-        
     }
     
     function fimEspera() {

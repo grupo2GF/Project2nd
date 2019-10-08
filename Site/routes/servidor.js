@@ -7,7 +7,7 @@ var banco = require('../app-banco');
 router.get('/ListarServidor', function (req, res, next) {
     console.log(banco.conexao);
     banco.conectar().then(() => {
-      return banco.sql.query(`select loginServidor, linkServidor, situacaoServidor from tbServidor`);
+      return banco.sql.query(`select loginServidor, linkServidor from tbServidor`);
     }).then(consulta => {
   
       console.log(`Resultado da consulta de serviços: ${JSON.stringify(consulta.recordset)}`);
@@ -39,9 +39,9 @@ router.get('/ListarServidor', function (req, res, next) {
   
     banco.conectar().then(() => {
       console.log(`Chegou p/ cadastro: ${JSON.stringify(req.body)}`);
-      login = req.body.login; // depois de .body, use o nome (name) do campo em seu formulário de login
-      senha = req.body.senha; // depois de .body, use o nome (name) do campo em seu formulário de login
-      link = req.body.link;
+      login = req.body.nomeServidor; // depois de .body, use o nome (name) do campo em seu formulário de login
+      senha = req.body.senhaServidor; // depois de .body, use o nome (name) do campo em seu formulário de login
+      link = req.body.linkServidor;
       if (login == undefined || senha == undefined || link == undefined) {
       // coloque a frase de erro que quiser aqui. Ela vai aparecer no formulário de cadastro
         throw new Error(`Dados de cadastro não chegaram completos: ${login} / ${senha} / ${link}`);
@@ -66,7 +66,7 @@ router.get('/ListarServidor', function (req, res, next) {
     }).finally(() => {
       if (cadastro_valido) {		  
           
-      banco.sql.query(`insert into tbServidor (loginServidor, linkServidor, senhaServidor) values (${login}','${link}','${senha}')`).then(function() {
+      banco.sql.query(`insert into tbServidor (loginServidor, linkServidor, senhaServidor) values ('${login}','${link}','${senha}')`).then(function() {
         console.log(`Servidor cadastrado com sucesso!`);
         res.sendStatus(201); 
         // status 201 significa que algo foi criado no back-end, 
