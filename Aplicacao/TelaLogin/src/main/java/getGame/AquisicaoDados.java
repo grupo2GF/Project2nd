@@ -47,10 +47,13 @@ public class AquisicaoDados {
         
     }
 
-    private static void printMemory(GlobalMemory memory) {
+    private static String printMemory(GlobalMemory memory) {
         //long porcentagemRam = (memory.getAvailable()*1024/ memory.getTotal())*100;
-        System.out.println("RAM Total: " + FormatUtil.formatBytes(memory.getTotal()));
-        System.out.println("RAM Disponível: " + FormatUtil.formatBytes(memory.getAvailable()));
+//        System.out.println("RAM Total: " + FormatUtil.formatBytes(memory.getTotal()));
+//        System.out.println("RAM Disponível: " + FormatUtil.formatBytes(memory.getAvailable()));
+        return String.format("<html>Total: %s <br> Disponível: %s </html>",
+                FormatUtil.formatBytes(memory.getTotal()),
+                FormatUtil.formatBytes(memory.getAvailable()));
         //System.out.println("Usado: " + porcentagemRam + "%");
     }
 
@@ -91,9 +94,9 @@ public class AquisicaoDados {
     public String getRAM() {
         SystemInfo si = new SystemInfo();
         HardwareAbstractionLayer hal = si.getHardware();
-        System.out.println("Nome: " + hal.getComputerSystem().getModel());
-        printMemory(hal.getMemory());
-        return hal.getMemory().toString();
+//        System.out.println("Nome: " + hal.getComputerSystem().getModel());
+        
+        return printMemory(hal.getMemory());
     }
 
     public String getDisco() {
