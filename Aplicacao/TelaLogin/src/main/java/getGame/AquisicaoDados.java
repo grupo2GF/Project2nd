@@ -1,6 +1,7 @@
 package getGame;
 
 import java.awt.List;
+import java.io.File;
 import java.util.Arrays;
 import oshi.SystemInfo;
 import oshi.hardware.*;
@@ -34,17 +35,16 @@ public class AquisicaoDados {
         long totalCpu = user + nice + sys + idle + iowait + irq + softirq + steal;
 
 //        System.out.format("CPU load: %.1f%% (SISTEMA OPERACIONAL)%n", processor.getSystemCpuLoad() * 100);
-
         StringBuilder procCpu = new StringBuilder("CPU load per processor:");
         double[] load = processor.getProcessorCpuLoadBetweenTicks();
         for (double avg : load) {
             procCpu.append(String.format(" %.1f%%", avg * 100));
-            porcentagemCPU += (avg*100);
+            porcentagemCPU += (avg * 100);
             contador++;
         }
-        
-        return (String.format("Uso do CPU: %.2f", porcentagemCPU/contador));
-        
+
+        return (String.format("Uso do CPU: %.2f", porcentagemCPU / contador));
+
     }
 
     private static String printMemory(GlobalMemory memory) {
@@ -57,28 +57,40 @@ public class AquisicaoDados {
         //System.out.println("Usado: " + porcentagemRam + "%");
     }
 
-    private static void printDisks(HWDiskStore[] diskStores) {
-        System.out.println("Disks:");
-        for (HWDiskStore disk : diskStores) {
-            boolean readwrite = disk.getReads() > 0 || disk.getWrites() > 0;
-            System.out.format(" %s: (model: %s - S/N: %s) size: %s, reads: %s (%s), writes: %s (%s), xfer: %s ms%n",
-                    disk.getName(), disk.getModel(), disk.getSerial(),
-                    disk.getSize() > 0 ? FormatUtil.formatBytesDecimal(disk.getSize()) : "?",
-                    readwrite ? disk.getReads() : "?", readwrite ? FormatUtil.formatBytes(disk.getReadBytes()) : "?",
-                    readwrite ? disk.getWrites() : "?", readwrite ? FormatUtil.formatBytes(disk.getWriteBytes()) : "?",
-                    readwrite ? disk.getTransferTime() : "?");
-            HWPartition[] partitions = disk.getPartitions();
-            if (partitions == null) {
-                // TODO Remove when all OS's implemented
-                continue;
-            }
-            for (HWPartition part : partitions) {
-                System.out.format(" |-- %s: %s (%s) Maj:Min=%d:%d, size: %s%s%n", part.getIdentification(),
-                        part.getName(), part.getType(), part.getMajor(), part.getMinor(),
-                        FormatUtil.formatBytesDecimal(part.getSize()),
-                        part.getMountPoint().isEmpty() ? "" : " @ " + part.getMountPoint());
-            }
+    private static String printDisks(HWDiskStore[] diskStores) {
+//        System.out.println("Disks:");
+//        for (HWDiskStore disk : diskStores) {
+//            boolean readwrite = disk.getReads() > 0 || disk.getWrites() > 0;
+//            System.out.format(" %s: (model: %s - S/N: %s) size: %s, reads: %s (%s), writes: %s (%s), xfer: %s ms%n",
+//                    disk.getName(), disk.getModel(), disk.getSerial(),
+//                    disk.getSize() > 0 ? FormatUtil.formatBytesDecimal(disk.getSize()) : "?",
+//                    readwrite ? disk.getReads() : "?", readwrite ? FormatUtil.formatBytes(disk.getReadBytes()) : "?",
+//                    readwrite ? disk.getWrites() : "?", readwrite ? FormatUtil.formatBytes(disk.getWriteBytes()) : "?",
+//                    readwrite ? disk.getTransferTime() : "?");
+//            HWPartition[] partitions = disk.getPartitions();
+//            if (partitions == null) {
+//                // TODO Remove when all OS's implemented
+//                continue;
+//            }
+//            for (HWPartition part : partitions) {
+//                System.out.format(" |-- %s: %s (%s) Maj:Min=%d:%d, size: %s%s%n", part.getIdentification(),
+//                        part.getName(), part.getType(), part.getMajor(), part.getMinor(),
+//                        FormatUtil.formatBytesDecimal(part.getSize()),
+//                        part.getMountPoint().isEmpty() ? "" : " @ " + part.getMountPoint());
+//            }
+
+        String dadosDisco = null;
+        File[] roots = File.listRoots();
+        for (File root : roots) {
+            String usedSpace = FormatUtil.formatBytes(root.getTotalSpace() - root.getUsableSpace());
+            String discos = String.format("%s: %s used of %s%n",
+                    root.getAbsolutePath(), usedSpace, FormatUtil.formatBytes(root.getTotalSpace()));
+            dadosDisco = discos;
         }
+        
+        
+        return dadosDisco;
+        
     }
 
     public String getCPU() {
@@ -88,23 +100,23 @@ public class AquisicaoDados {
 //        return si.getHardware().getProcessor().toString()+"\r\n"+printCpu(si.getHardware().getProcessor());
         return String.format("<html>%s <br> %s</html>",
                 si.getHardware().getProcessor().toString(),
-                printCpu(si.getHardware().getProcessor())+"%");
+                printCpu(si.getHardware().getProcessor()) + "%");
     }
 
     public String getRAM() {
         SystemInfo si = new SystemInfo();
         HardwareAbstractionLayer hal = si.getHardware();
 //        System.out.println("Nome: " + hal.getComputerSystem().getModel());
-        
+
         return printMemory(hal.getMemory());
     }
 
     public String getDisco() {
         SystemInfo si = new SystemInfo();
         HardwareAbstractionLayer hal = si.getHardware();
-        System.out.println("Nome: " + hal.getComputerSystem().getModel());
+//        System.out.println("Nome: " + hal.getComputerSystem().getModel());
         printDisks(hal.getDiskStores());
-        return hal.getDiskStores().toString();
+        return String.format("%s",printDisks(hal.getDiskStores()));
     }
-    
+
 }

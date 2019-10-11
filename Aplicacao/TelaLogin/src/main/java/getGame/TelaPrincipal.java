@@ -26,16 +26,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     public void run() {
                         String cpu = dados.getCPU();
                         String ram = dados.getRAM();
-//                        String disco = dados.getDisco();
+                        String disco = dados.getDisco();
                         try {
                             Boolean verificacao = true;
                             while (verificacao) {
                                 cpu = dados.getCPU();
                                 ram = dados.getRAM();
-//                                disco = dados.getDisco();
+                                disco = dados.getDisco();
                                 lbCPU.setText(dados.getCPU());
                                 lbRAM.setText(dados.getRAM());
-//                                lbHD.setText(dados.getDisco());
+                                lbHD.setText(dados.getDisco());
                             }
                         } catch (Exception e) {
                             System.out.println("Erro: " + e);
