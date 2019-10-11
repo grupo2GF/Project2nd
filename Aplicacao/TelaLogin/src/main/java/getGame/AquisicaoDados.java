@@ -14,7 +14,7 @@ import oshi.util.Util;
 
 public class AquisicaoDados {
 
-    private static void printCpu(CentralProcessor processor) {
+    private static String printCpu(CentralProcessor processor) {
 
         long[] prevTicks = processor.getSystemCpuLoadTicks();
         // Wait a second...
@@ -43,7 +43,8 @@ public class AquisicaoDados {
             contador++;
         }
         
-        System.out.println("Uso do CPU: "+ porcentagemCPU/contador);
+        return (String.format("Uso do CPU: %.2f", porcentagemCPU/contador));
+        
     }
 
     private static void printMemory(GlobalMemory memory) {
@@ -77,25 +78,30 @@ public class AquisicaoDados {
         }
     }
 
-    public void getCPU() {
+    public String getCPU() {
         SystemInfo si = new SystemInfo();
         HardwareAbstractionLayer hal = si.getHardware();
-        System.out.println("Nome: " + hal.getComputerSystem().getModel());
-        printCpu(si.getHardware().getProcessor());
+//        System.out.println("Nome: " + hal.getComputerSystem().getModel());
+//        return si.getHardware().getProcessor().toString()+"\r\n"+printCpu(si.getHardware().getProcessor());
+        return String.format("<html>%s <br> %s</html>",
+                si.getHardware().getProcessor().toString(),
+                printCpu(si.getHardware().getProcessor())+"%");
     }
 
-    public void getRAM() {
+    public String getRAM() {
         SystemInfo si = new SystemInfo();
         HardwareAbstractionLayer hal = si.getHardware();
         System.out.println("Nome: " + hal.getComputerSystem().getModel());
         printMemory(hal.getMemory());
+        return hal.getMemory().toString();
     }
 
-    public void getDisco() {
+    public String getDisco() {
         SystemInfo si = new SystemInfo();
         HardwareAbstractionLayer hal = si.getHardware();
         System.out.println("Nome: " + hal.getComputerSystem().getModel());
         printDisks(hal.getDiskStores());
+        return hal.getDiskStores().toString();
     }
     
 }

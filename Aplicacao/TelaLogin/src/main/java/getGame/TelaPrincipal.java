@@ -17,6 +17,31 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
     }
+    
+    AquisicaoDados dados = new AquisicaoDados();
+
+                Runnable tarefas = new Runnable() {
+
+                    @Override
+                    public void run() {
+                        String cpu = dados.getCPU();
+//                        String ram = dados.getRAM();
+//                        String disco = dados.getDisco();
+                        try {
+                            Boolean verificacao = true;
+                            while (verificacao) {
+                                cpu = dados.getCPU();
+//                                ram = dados.getRAM();
+//                                disco = dados.getDisco();
+                                lbCPU.setText(dados.getCPU());
+//                                lbRAM.setText(dados.getRAM());
+//                                lbHD.setText(dados.getDisco());
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Erro: " + e);
+                        }
+                    }
+                };
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -103,7 +128,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 492, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1))
@@ -222,18 +247,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-     new Login().setVisible(true);
-     dispose();
+        new Login().setVisible(true);
+        dispose();
     }//GEN-LAST:event_btSairActionPerformed
 
     private void cbSelecionarServidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSelecionarServidorActionPerformed
-        // TODO add your handling code here:
+        new Thread(tarefas).start();
         
     }//GEN-LAST:event_cbSelecionarServidorActionPerformed
 
     private void cbSelecionarServidorComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_cbSelecionarServidorComponentAdded
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_cbSelecionarServidorComponentAdded
 
     /**
@@ -267,6 +292,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaPrincipal().setVisible(true);
+                
             }
         });
     }
