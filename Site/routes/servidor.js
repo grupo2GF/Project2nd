@@ -7,20 +7,20 @@ var banco = require('../app-banco');
 router.get('/ListarServidor', function (req, res, next) {
     console.log(banco.conexao);
     banco.conectar().then(() => {
-      return banco.sql.query(`select loginServidor, linkServidor from tbServidor`);
+      return banco.sql.query(`select codServidor, loginServidor, linkServidor from tbServidor`);
     }).then(consulta => {
   
-      console.log(`Resultado da consulta de serviços: ${JSON.stringify(consulta.recordset)}`);
+      console.log(`Resultado da consulta de servidores: ${JSON.stringify(consulta.recordset)}`);
   
       if (consulta.recordset.length == 0) {
-        res.status(404).send('Nenhum serviço encontrado');
+        res.status(404).send('Nenhum servidor encontrado');
       } else {
         res.send(consulta.recordset);
       }
   
     }).catch(err => {
   
-      var erro = `Erro na pesquisa de serviços: ${err}`;
+      var erro = `Erro na pesquisa de servidores: ${err}`;
       console.error(erro);
       res.status(500).send(erro);
   
@@ -35,6 +35,7 @@ router.get('/ListarServidor', function (req, res, next) {
     var link;
     var login;
     var senha;
+    var usuario;
     var cadastro_valido = false;
   
     banco.conectar().then(() => {
@@ -42,9 +43,10 @@ router.get('/ListarServidor', function (req, res, next) {
       login = req.body.nomeServidor; // depois de .body, use o nome (name) do campo em seu formulário de login
       senha = req.body.senhaServidor; // depois de .body, use o nome (name) do campo em seu formulário de login
       link = req.body.linkServidor;
-      if (login == undefined || senha == undefined || link == undefined) {
+      usuario = req.body.nomeUsuario;
+      if (login == undefined || senha == undefined || link == undefined || usuario == undefined) {
       // coloque a frase de erro que quiser aqui. Ela vai aparecer no formulário de cadastro
-        throw new Error(`Dados de cadastro não chegaram completos: ${login} / ${senha} / ${link}`);
+        throw new Error(`Dados de cadastro não chegaram completos: ${login} / ${senha} / ${link}/ ${usuario}`);
       }
       return banco.sql.query(`select count(*) as contagem from tbServidor where linkServidor = '${link}'`);
     }).then(consulta => {
@@ -66,7 +68,8 @@ router.get('/ListarServidor', function (req, res, next) {
     }).finally(() => {
       if (cadastro_valido) {		  
           
-      banco.sql.query(`insert into tbServidor (loginServidor, linkServidor, senhaServidor) values ('${login}','${link}','${senha}')`).then(function() {
+      banco.sql.query(`insert into tbServidor (loginServidor, linkServidor, senhaServidor, codUsuario) values ('${login}','${link}','${senha}'
+        , (select codUsuario from tbUsuario where loginUsuario = '${usuario}'))`).then(function() {
         console.log(`Servidor cadastrado com sucesso!`);
         res.sendStatus(201); 
         // status 201 significa que algo foi criado no back-end, 

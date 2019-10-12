@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>ggGetGame - Servidores</title>
+  <title>ggGetGame - Auditoria</title>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -36,7 +36,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Servidores</div>
+        <div class="sidebar-brand-text mx-3">ggGetGame</div>
       </a>
 
       <!-- Divider -->
@@ -54,67 +54,30 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        MONITORAMENTO
+      Monitoramento
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="minhas-maquinas.html">
+        <a class="nav-link collapsed" href="minhas-maquinas.html"> 
           <i class="fas fa-fw fa-cog"></i>
           <span>Minhas máquinas</span>
         </a>
-        <!-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-          </div>
-        </div> -->
+     
       </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <!-- <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>   
-          </div>
-        </div>
-      </li> -->
-
-      <!-- Divider -->
-      <!-- <hr class="sidebar-divider"> -->
-
-      <!-- Heading -->
-      <!-- <div class="sidebar-heading">
-        Addons
-      </div> -->
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <!-- <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="blank.html">Blank Page</a>
-          </div>
-        </div>
-      </li> -->
-
       <!-- Nav Item - Tables -->
-      <li class="nav-item active">
-        <a class="nav-link" href="tables.html">
+      <li class="nav-item">
+        <a class="nav-link" href="servidores.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Cadastrar Servidores</span></a>
       </li>
 
+      <!-- Nav Item - Tables -->
+      <li class="nav-item active">
+        <a class="nav-link" href="auditoria.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Auditar Servidores</span></a>
+      </li>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -263,65 +226,39 @@
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Servidores</h1> <br>
-
-              <!-- criar servico -->
-            <div class="modal fade" id="modalCriarServidor" tabindex="-1" role="dialog" aria-labelledby="modalCriarServidorLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content">
-                    <form id="formularioCadServidor" method="POST" onsubmit="return cadastrarServidor()">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalCriarServidorLabel">Cadastrar Servidor</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                                <div class="form-group">
-                                  <label for="exampleInputEmail1">Nome do servidor</label>
-                                  <input type="text" class="form-control" id="nomeServidor" name="nomeServidor" aria-describedby="emailHelp" placeholder="Digite o nome do servidor">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Link do servidor</label>
-                                    <input type="text" class="form-control" id="linkServidor" name="linkServidor" aria-describedby="emailHelp" placeholder="Digite o link do servidor">
-                                  </div>
-                                <div class="form-group">
-                                  <label for="exampleInputPassword1">Senha</label>
-                                  <input type="password" class="form-control" id="senhaServidor" name="senhaServidor" placeholder="Digite a senha">
-                                </div>
-                                <button type="submit" class="btn btn-primary float-right">Cadastrar</button><br>
-                        </div>
-                      </div>
-                    </form>
-                </div>
-         </div>
-        <!-- fim criar servico -->
-
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Lista de Servidores</h6>
-              <button class="btn btn-primary float-right" 
-              data-toggle="modal" data-target="#modalCriarServidor">Cadastrar Servidor</button>
+              <h6 class="m-0 font-weight-bold text-primary">Auditoria de Servidores</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Nome</th>
-                      <th>Link</th>
-                      <th>Status</th>
+                      <th>Código Auditoria</th>
+                      <th>Código Servidor</th>
+                      <th>Tabela Auditada</th>
+                      <th>Campos Alterados</th>
+                      <th>Tipo de Ação</th>
+                      <th>Data de Alteração</th>
+                      <th>Código do Usuário</th>
+                      <th>Nome do Funcionário</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Nome</th>
-                      <th>Link</th>
-                      <th>Status</th>
+                      <th>Código Auditoria</th>
+                      <th>Código Servidor</th>
+                      <th>Tabela Auditada</th>
+                      <th>Campos Alterados</th>
+                      <th>Tipo de Ação</th>
+                      <th>Data de Alteração</th>
+                      <th>Código do Usuário</th>
+                      <th>Nome do Funcionário</th>
                     </tr>
                   </tfoot>
-                  <tbody id="lista_servidores">
+                  <tbody id="lista_auditoria">
                     
                   </tbody>
                 </table>
@@ -379,8 +316,10 @@
 <script>
 
     verificarAutenticacao();
-    listarServidores();
+    listarAuditorias();
     
+    document.querySelector('#nomeUsuario').value = usuario;
+
     function verificarAutenticacao() {
         usuario = sessionStorage.nome;
         if (usuario == undefined) {
@@ -396,42 +335,30 @@
           verificarAutenticacao();
       }
 
-      function cadastrarServidor() {
-      var formulario = new URLSearchParams(new FormData(formularioCadServidor));
-      fetch("/servidor/cadastrar", {
-          method: "POST",
-          body: formulario
-      }).then(function (response) {
-          if (response.ok) {
-              window.location.href = 'tables.html';
-          } else {
-              console.log('Erro de cadastro!');
-              response.text().then(function (resposta) {
-                alert("ERROR *");
-              });
-          }
-      });
-      return false;
-      }
-
-      function listarServidores(){
-        fetch(`/servidor/ListarServidor`, {
+      function listarAuditorias(){
+        fetch(`/auditoria/ListarAuditoria`, {
           method: "GET"
         }).then(function (response){
           if(response.ok){
             response.json().then(function (resposta){
               console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-              document.getElementById(`lista_servidores`).innerHTML = '';
+              document.getElementById(`lista_auditoria`).innerHTML = '';
               for(const linha of resposta){
                 let conteudo = 
                 `
                 <tr>
-                      <td>${linha.loginServidor}</td>
-                      <td>${linha.linkServidor}</td>
+                      <td>${linha.codAuditoria}</td>
+                      <td>${linha.codServidor}</td>
+                      <td>${linha.tbAuditada}</td>
+                      <td>${linha.tipoAcao}</td>
+                      <td>${linha.tbCamposAuditados}</td>
+                      <td>${linha.dataHoraAuditoria}</td>
+                      <td>${linha.codUsuario}</td>
+                      <td>${linha.nomeFuncionario}</td>
                     </tr>
                 `;
-                document.getElementById(`lista_servidores`).innerHTML += conteudo;
+                document.getElementById(`lista_auditoria`).innerHTML += conteudo;
               }
             });
           }else{
