@@ -19,7 +19,7 @@ create table tbServidor (
 	  senhaServidor varchar(255) not null,
 	  codUsuario int foreign key (codUsuario) references tbUsuario(codUsuario)
   );
-
+	
 create table tbAcesso (
 	codUsuario int foreign key (codUsuario) references tbUsuario(codUsuario),
     codServidor int foreign key (codServidor) references tbServidor(codServidor)
