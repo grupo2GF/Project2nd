@@ -19,6 +19,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     AquisicaoDados dados = new AquisicaoDados();
+    
+    public void limparLabel() {
+        
+        lbCPU.setText("");
+        lbHD.setText("");
+        lbRAM.setText("");
+        
+    }
 
                 Runnable tarefas = new Runnable() {
 
@@ -71,6 +79,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lbRAM = new javax.swing.JLabel();
         lbHD = new javax.swing.JLabel();
         lbCPU = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        lbNomeServidor = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -189,6 +199,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel8.setText("Listar CPU:");
 
+        jLabel9.setText("Monitorando:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -207,7 +219,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbListarProcessos))
+                        .addComponent(lbListarProcessos)
+                        .addGap(81, 81, 81)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbNomeServidor))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
@@ -216,7 +232,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbCPU)
                             .addComponent(lbHD))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(327, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +242,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbSelecionarServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(lbListarProcessos))
+                    .addComponent(lbListarProcessos)
+                    .addComponent(jLabel9)
+                    .addComponent(lbNomeServidor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -254,11 +272,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void cbSelecionarServidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSelecionarServidorActionPerformed
         new Thread(tarefas).start();
         
+         limparLabel();
+         lbNomeServidor.setText(cbSelecionarServidor.getSelectedItem().toString());
+         
+
+        
     }//GEN-LAST:event_cbSelecionarServidorActionPerformed
 
     private void cbSelecionarServidorComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_cbSelecionarServidorComponentAdded
-        // TODO add your handling code here:
-
+        
+       
     }//GEN-LAST:event_cbSelecionarServidorComponentAdded
 
     /**
@@ -309,6 +332,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
@@ -316,6 +340,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lbCPU;
     private javax.swing.JLabel lbHD;
     private javax.swing.JLabel lbListarProcessos;
+    private javax.swing.JLabel lbNomeServidor;
     private javax.swing.JLabel lbRAM;
     // End of variables declaration//GEN-END:variables
 }

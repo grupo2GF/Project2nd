@@ -79,6 +79,10 @@
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lbListarProcessos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lbNomeServidor" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -92,7 +96,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="327" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -105,6 +109,8 @@
                   <Component id="cbSelecionarServidor" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lbListarProcessos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbNomeServidor" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -300,6 +306,13 @@
     <Component class="javax.swing.JLabel" name="lbHD">
     </Component>
     <Component class="javax.swing.JLabel" name="lbCPU">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel9">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Monitorando:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbNomeServidor">
     </Component>
   </SubComponents>
 </Form>
