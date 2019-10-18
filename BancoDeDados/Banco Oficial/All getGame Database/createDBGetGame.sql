@@ -1,14 +1,12 @@
 create table tbFuncionario (
-	  codFuncionario int primary key identity(1,1),
-	  nomeFuncionario varchar(40) not null,
-	  cpfFuncionario varchar(15) not null
+	  
   );
 
 create table tbUsuario (
 	  codUsuario int primary key identity(1,1),
-	  loginUsuario varchar(40) not null,
+	  nomeUsuario varchar(40) not null,
+	  CPFUsuario varchar(15) not null,
 	  senhaUsuario varchar(255) not null,
-	  codFuncionario int foreign key (codFuncionario) references tbFuncionario (codFuncionario),
 	  permissaoUsuario bit not null
   );
 
@@ -52,5 +50,5 @@ create table tbAuditoria (
 	  tbCamposAuditados varchar(255),
 	  dataHoraAuditoria date null,
 	  codUsuario int null,
-	  nomeFuncionario varchar(100) null
+	  nomeUsuario varchar(100) null
   );
