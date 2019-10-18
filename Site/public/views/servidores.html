@@ -361,7 +361,8 @@
 
     function verificarAutenticacao() {
         usuario = sessionStorage.nome;
-        if (usuario == undefined) {
+        permissao = sessionStorage.permissao;
+        if (usuario == undefined || permissao == "false") {
             window.location.href = '../login.html';
             logoff();
         } else {
