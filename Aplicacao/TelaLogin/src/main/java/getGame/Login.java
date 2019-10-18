@@ -224,6 +224,7 @@ public class Login extends javax.swing.JFrame {
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         if(txtLogin.getText().equals("gerson") && txtSenha.getText().equals("123")){
             TelaPrincipal tela = new TelaPrincipal();
+            tela.setNomeUsuario(txtLogin.getText());
             tela.setVisible(true);
             dispose();
         }else{

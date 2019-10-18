@@ -14,7 +14,7 @@ import oshi.util.FormatUtil;
 import oshi.util.Util;
 
 public class AquisicaoDados {
-
+    
     private static String printCpu(CentralProcessor processor) {
 
         long[] prevTicks = processor.getSystemCpuLoadTicks();
