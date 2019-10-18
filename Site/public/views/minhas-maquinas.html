@@ -62,19 +62,8 @@
         </a>
      
       </li>
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="servidores.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Cadastrar Servidores</span></a>
-      </li>
       
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="auditoria.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Auditar Servidores</span></a>
-      </li>
+      <span id="acessoAdministrador"></span>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -463,6 +452,7 @@
   })
   verificarAutenticacao();
   listarServidores();
+  verificarPermissao();
       
   function verificarAutenticacao() {
         usuario = sessionStorage.nome;
@@ -477,6 +467,37 @@
     function logoff() {
         sessionStorage.removeItem('nome');
         verificarAutenticacao();
+    }
+
+    function verificarPermissao(){
+      if(sessionStorage.permissao == "true"){
+        let conteudo = 
+        `<!-- Nav Item - Tables -->
+          <li class="nav-item">
+            <a class="nav-link" href="servidores.html">
+              <i class="fas fa-fw fa-table"></i>
+              <span>Cadastrar Servidores</span></a>
+          </li>
+
+          <!-- Nav Item - Tables -->
+          <li class="nav-item ">
+            <a class="nav-link" href="usuario.html">
+              <i class="fas fa-fw fa-table"></i>
+              <span>Cadastrar Usuario</span></a>
+          </li>
+
+          <!-- Nav Item - Tables -->
+          <li class="nav-item">
+            <a class="nav-link" href="auditoria.html">
+              <i class="fas fa-fw fa-table"></i>
+              <span>Auditar Servidores</span></a>
+          </li>
+        `;
+        document.getElementById(`acessoAdministrador`).innerHTML += conteudo;
+      }else{
+        let conteudo = ``;
+        document.getElementById(`acessoAdministrador`).innerHTML += conteudo;
+      }
     }
 
     function listarServidores(){

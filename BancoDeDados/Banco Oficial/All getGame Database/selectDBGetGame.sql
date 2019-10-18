@@ -1,4 +1,3 @@
-select * from tbFuncionario;
 select * from tbUsuario;
 select * from tbServidor;
 select * from tbAcesso;

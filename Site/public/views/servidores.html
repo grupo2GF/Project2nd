@@ -75,6 +75,13 @@
       
       <!-- Nav Item - Tables -->
       <li class="nav-item">
+        <a class="nav-link" href="usuario.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Cadastrar Usuario</span></a>
+      </li>
+      
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
         <a class="nav-link" href="auditoria.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Auditar Servidores</span></a>
@@ -354,7 +361,8 @@
 
     function verificarAutenticacao() {
         usuario = sessionStorage.nome;
-        if (usuario == undefined) {
+        permissao = sessionStorage.permissao;
+        if (usuario == undefined || permissao == "false") {
             window.location.href = '../login.html';
             logoff();
         } else {

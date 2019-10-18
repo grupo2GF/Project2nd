@@ -1,16 +1,9 @@
-insert into tbFuncionario
-values
-('Eduardo', '00000000000'),
-('Regino', '00000000000'),
-('Saulo', '00000000000'),
-('Livia', '00000000000');
-
 insert into tbUsuario
 values
-('edu', '1234', 1, 1),
-('regino', '1234', 2, 1),
-('ggGetGame', '1234', 3, 1),
-('cliente', '1234', 4, 0);
+('Eduardo', '00000000000', '1234', 1),
+('Regino', '00000000000', '1234', 1),
+('ggGetGame', '00000000000', '1234', 1),
+('cliente', '00000000000','1234', 0);
 
 insert into tbServidor
 values
@@ -27,7 +20,6 @@ insert into tbProcessoServidor
 values
 ('windows', 45,32,1);
 
-select * from tbFuncionario;
 select * from tbUsuario;
 select * from tbServidor;
 select * from tbAcesso;

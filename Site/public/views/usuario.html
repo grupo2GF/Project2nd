@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>ggGetGame - Auditoria</title>
+  <title>ggGetGame - Usuarios</title>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -43,7 +43,7 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
@@ -65,19 +65,28 @@
         </a>
      
       </li>
+
       <!-- Nav Item - Tables -->
       <li class="nav-item">
         <a class="nav-link" href="servidores.html">
           <i class="fas fa-fw fa-table"></i>
-          <span>Cadastrar Servidores</span></a>
+          <span>Cadastrar Servidor</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item active">
+        <a class="nav-link" href="usuario.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Cadastrar Usuario</span></a>
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
         <a class="nav-link" href="auditoria.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Auditar Servidores</span></a>
       </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -225,40 +234,73 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Servidores</h1> <br>
+          <h1 class="h3 mb-2 text-gray-800">Usuário</h1> <br>
+
+              <!-- criar Usuario -->
+            <div class="modal fade" id="modalCriarUsuario" tabindex="-1" role="dialog" aria-labelledby="modalCriarUsuarioLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <form id="formularioCadUsuario" method="POST" onsubmit="return cadastrarUsuario()">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalCriarUsuarioLabel">Cadastrar Usuário</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Nome do Usuario</label>
+                                  <input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario" aria-describedby="emailHelp" placeholder="Digite o nome do Usuario">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">CPF do Usuario</label>
+                                    <input type="text" class="form-control" id="CPFUsuario" name="CPFUsuario" aria-describedby="emailHelp" placeholder="Digite o CPF do Usuario">
+                                </div>
+                                <div class="form-group">
+                                  <label for="password">Senha do Usuario</label>
+                                  <input type="password" class="form-control" id="senhaUsuario" name="senhaUsuario" aria-describedby="passwordHelp" placeholder="Digite a senha do Usuario">
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Permissão do Usuario</label>
+                                  <select name="permissaoUsuario" id="permissao">
+                                    <option value="1">Administrador</option>
+                                    <option value="0">Operador</option>
+                                  </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary float-right">Cadastrar</button><br>
+                        </div>
+                      </div>
+                    </form>
+                </div>
+         </div>
+        <!-- fim criar Usuario -->
+
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Auditoria de Servidores</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Lista de Usuario</h6>
+              <button class="btn btn-primary float-right" 
+              data-toggle="modal" data-target="#modalCriarUsuario">Cadastrar Usuario</button>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Código Auditoria</th>
-                      <th>Código Servidor</th>
-                      <th>Tabela Auditada</th>
-                      <th>Campos Alterados</th>
-                      <th>Tipo de Ação</th>
-                      <th>Data de Alteração</th>
-                      <th>Código do Usuário</th>
-                      <th>Nome do Funcionário</th>
+                      <th>Nome do Usuário</th>
+                      <th>CPF do Usuário</th>
+                      <th>Permissão do Usuário</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Código Auditoria</th>
-                      <th>Código Servidor</th>
-                      <th>Tabela Auditada</th>
-                      <th>Campos Alterados</th>
-                      <th>Tipo de Ação</th>
-                      <th>Data de Alteração</th>
-                      <th>Código do Usuário</th>
-                      <th>Nome do Funcionário</th>
+                      <th>Nome do Usuário</th>
+                      <th>CPF do Usuário</th>
+                      <th>Permissão do Usuário</th>
                     </tr>
                   </tfoot>
-                  <tbody id="lista_auditoria">
+                  <tbody id="lista_usuario">
                     
                   </tbody>
                 </table>
@@ -316,7 +358,8 @@
 <script>
 
     verificarAutenticacao();
-    listarAuditorias();
+    listarUsuarios();
+    listarPermissionamento();
     
     document.querySelector('#nomeUsuario').value = usuario;
 
@@ -336,30 +379,43 @@
           verificarAutenticacao();
       }
 
-      function listarAuditorias(){
-        fetch(`/auditoria/ListarAuditoria`, {
+      function cadastrarUsuario() {
+      var formulario = new URLSearchParams(new FormData(formularioCadUsuario));
+      fetch("/usuarios/cadastrar", {
+          method: "POST",
+          body: formulario
+      }).then(function (response) {
+          if (response.ok) {
+              window.location.href = 'usuario.html';
+          } else {
+              console.log('Erro de cadastro!');
+              response.text().then(function (resposta) {
+                alert("ERROR *");
+              });
+          }
+      });
+      return false;
+      }
+
+      function listarUsuarios(){
+        fetch(`/usuarios/ListarUsuario`, {
           method: "GET"
         }).then(function (response){
           if(response.ok){
             response.json().then(function (resposta){
               console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-              document.getElementById(`lista_auditoria`).innerHTML = '';
+              document.getElementById(`lista_usuario`).innerHTML = '';
               for(const linha of resposta){
                 let conteudo = 
                 `
                 <tr>
-                      <td>${linha.codAuditoria}</td>
-                      <td>${linha.codServidor}</td>
-                      <td>${linha.tbAuditada}</td>
-                      <td>${linha.tipoAcao}</td>
-                      <td>${linha.tbCamposAuditados}</td>
-                      <td>${linha.dataHoraAuditoria}</td>
-                      <td>${linha.codUsuario}</td>
                       <td>${linha.nomeUsuario}</td>
+                      <td>${linha.CPFUsuario}</td>
+                      <td>${linha.permissaoUsuario}</td>
                     </tr>
                 `;
-                document.getElementById(`lista_auditoria`).innerHTML += conteudo;
+                document.getElementById(`lista_usuario`).innerHTML += conteudo;
               }
             });
           }else{

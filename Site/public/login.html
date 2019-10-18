@@ -37,44 +37,26 @@
                         <br>
                         <button id="btnLogin" class="btnLogin">ENTRAR</button>
                         <br>
-                        <br>
                     </form>
                 </div>
-
-                <div class="CadastrarForm" id="Cadastro" style="display: none;">
-                    <p class="cadastrarTitulo">Registrar Conta</p>
-                    <form>
-                        <input type="text" placeholder="Endereço de email">
-                        <br>
-                        <input type="password" placeholder="Senha">
-                        <br>
-                        <input type="password" placeholder="Confirmar Senha">
-                        <br>
-                        <button id="btnCadastrar" class="btnCadastrar">REGISTRAR</button>
-                    </form>
-                </div>
-
             </div>
         </div>
     </header>
-
-    <main>
-
-
-    </main>
-
 </body>
 
 </html>
 
 <script>
-
+    function abrirRegistro() {
+        loginEntrar.style.display = "none";
+    }
 
     verificarAutenticacao();
     
     function verificarAutenticacao() {
         if (sessionStorage.nome != undefined) {
             sessionStorage.setItem('nome', login.value);
+            
             window.location.href = 'views/index.html';
         }
     }
@@ -90,8 +72,9 @@
         if (response.ok){
 
         response.json().then(function (resposta){
-
+        sessionStorage.setItem('permissao', resposta.permissaoUsuario);
         sessionStorage.nome = resposta.nomeUsuario;
+        sessionStorage.permissao = resposta.permissaoUsuario;
         verificarAutenticacao();
                     
     });
