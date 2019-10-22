@@ -5,25 +5,24 @@
  */
 package getGame;
 
+import oshi.util.Util;
+
 /**
  *
  * @author regino.neto
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaPrincipal
-     */
+    AquisicaoDados dados = new AquisicaoDados();
+    TesteProcessos dados2 = new TesteProcessos();
+
     public TelaPrincipal() {
         initComponents();
     }
 
-    public String setNomeUsuario(String login) {
+    public void setNomeUsuario(String login) {
         lbNomeUsuario.setText(login);
-        return "a";
     }
-
-    AquisicaoDados dados = new AquisicaoDados();
 
     public void limparLabel() {
 
@@ -37,18 +36,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         @Override
         public void run() {
-            String cpu = dados.getCPU();
-            String ram = dados.getRAM();
-            String disco = dados.getDisco();
             try {
                 Boolean verificacao = true;
                 while (verificacao) {
-                    cpu = dados.getCPU();
-                    ram = dados.getRAM();
-                    disco = dados.getDisco();
+                    Util.sleep(3000);
                     lbCPU.setText(dados.getCPU());
                     lbRAM.setText(dados.getRAM());
                     lbHD.setText(dados.getDisco());
+                    lbProcessos.setText("");
+                    lbProcessos.setText(String.format("<html>" + dados2.getProcessos() + "</html>"));
                 }
             } catch (Exception e) {
                 System.out.println("Erro: " + e);
@@ -80,12 +76,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        lbListarProcessos = new javax.swing.JLabel();
         lbRAM = new javax.swing.JLabel();
         lbHD = new javax.swing.JLabel();
         lbCPU = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        lbNomeServidor = new javax.swing.JLabel();
+        lbMonitorando = new javax.swing.JLabel();
+        lbProcessos = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -196,7 +192,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Listar processos:");
+        jLabel5.setText("Processos");
 
         jLabel6.setText("Listar RAM:");
 
@@ -216,31 +212,31 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(cbSelecionarServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbRAM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lbMonitorando))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbListarProcessos)
-                        .addGap(81, 81, 81)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbNomeServidor))
+                        .addComponent(lbProcessos, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(lbCPU, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                                .addComponent(lbHD, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(lbCPU, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbRAM, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,10 +245,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbSelecionarServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(lbListarProcessos)
                     .addComponent(jLabel9)
-                    .addComponent(lbNomeServidor))
+                    .addComponent(lbMonitorando))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -265,7 +259,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(lbCPU, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(0, 260, Short.MAX_VALUE))
+                    .addComponent(lbProcessos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -281,7 +281,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         new Thread(tarefas).start();
 
         limparLabel();
-        lbNomeServidor.setText(cbSelecionarServidor.getSelectedItem().toString());
+        lbMonitorando.setText(cbSelecionarServidor.getSelectedItem().toString());
 
 
     }//GEN-LAST:event_cbSelecionarServidorActionPerformed
@@ -345,9 +345,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lbCPU;
     private javax.swing.JLabel lbHD;
-    private javax.swing.JLabel lbListarProcessos;
-    private javax.swing.JLabel lbNomeServidor;
+    private javax.swing.JLabel lbMonitorando;
     private javax.swing.JLabel lbNomeUsuario;
+    private javax.swing.JLabel lbProcessos;
     private javax.swing.JLabel lbRAM;
     // End of variables declaration//GEN-END:variables
 }

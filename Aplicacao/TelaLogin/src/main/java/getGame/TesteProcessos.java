@@ -1,3 +1,4 @@
+package getGame;
 
 import oshi.SystemInfo;
 import oshi.hardware.GlobalMemory;
@@ -11,30 +12,39 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TesteProcessos {
-
+    
     private static List<String> oshi = new ArrayList<String>();
-
-    public void getProcessos() {
+    private String stringFinal;
+    
+    public String getProcessos() {
+        stringFinal = "";
         SystemInfo si = new SystemInfo();
         HardwareAbstractionLayer hal = si.getHardware();
         OperatingSystem os = si.getOperatingSystem();
         printProcesses(os, hal.getMemory());
 
-        System.out.println(oshi);
+        
+        
+        for (String parteTexto : oshi) {;
+            stringFinal=parteTexto.concat(oshi + "<br>");
+        }
+        System.out.println(stringFinal);
+
+        return stringFinal;
     }
 
     private static void printProcesses(OperatingSystem os, GlobalMemory memory) {
-        oshi.add("Processes: " + os.getProcessCount() + ", Threads: " + os.getThreadCount());
+        oshi.removeAll(oshi);
         // Sort by highest CPU
-        List<OSProcess> procs = Arrays.asList(os.getProcesses(10, OperatingSystem.ProcessSort.MEMORY));
+        List<OSProcess> procs = Arrays.asList(os.getProcesses(1, OperatingSystem.ProcessSort.MEMORY));
 
-        oshi.add("\r\n     PID  %CPU %MEM       RSS Name\r\n");
         for (int i = 0; i < procs.size() && i < Integer.MAX_VALUE; i++) {
             OSProcess p = procs.get(i);
-            oshi.add(String.format(" %5d %5.1f %4.1f %9s %s%n", p.getProcessID(),
+            oshi.add(String.format(" %5d %5.1f %4.1f %s%n", 
+                    p.getProcessID(),
                     100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime(),
-                    100d * p.getResidentSetSize() / memory.getTotal(),
-                    FormatUtil.formatBytes(p.getResidentSetSize()), p.getName()));
+                    100d * p.getResidentSetSize() / memory.getTotal(), 
+                    p.getName()));
         }
     }
 }
