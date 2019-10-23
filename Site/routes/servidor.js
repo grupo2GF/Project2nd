@@ -4,10 +4,15 @@ var router = express.Router();
 var banco = require('../app-banco');
 // não mexa nessas 3 linhas!
 
-router.get('/ListarServidor', function (req, res, next) {
+router.post('/ListarServidor', function (req, res, next) {
+    var usuario = req.body.usuario;
+    console.log(usuario);
     console.log(banco.conexao);
     banco.conectar().then(() => {
-      return banco.sql.query(`select codServidor, loginServidor, linkServidor from tbServidor`);
+      return banco.sql.query(`select s.codServidor, s.loginServidor, s.linkServidor, u.codUsuario, u.nomeUsuario from tbServidor as s
+                                inner join tbAcesso as a on (s.codServidor = a.codServidor)
+                                    inner join tbUsuario as u on (a.codUsuario = u.codUsuario)
+                                      where u.nomeUsuario like '${usuario}' or (select permissaoUsuario from tbUsuario as us where us.nomeUsuario like '${usuario}') = 1`);
     }).then(consulta => {
   
       console.log(`Resultado da consulta de servidores: ${JSON.stringify(consulta.recordset)}`);
@@ -68,8 +73,8 @@ router.get('/ListarServidor', function (req, res, next) {
     }).finally(() => {
       if (cadastro_valido) {		  
           
-      banco.sql.query(`insert into tbServidor (loginServidor, linkServidor, senhaServidor, codUsuario) values ('${login}','${link}','${senha}'
-        , (select codUsuario from tbUsuario where loginUsuario = '${usuario}'))`).then(function() {
+        banco.sql.query(`insert into tbServidor (loginServidor, linkServidor, senhaServidor, codUsuario) values ('${login}','${link}','${senha}'
+          , (select codUsuario from tbUsuario where loginUsuario = '${usuario}'))`).then(function() {
         console.log(`Servidor cadastrado com sucesso!`);
         res.sendStatus(201); 
         // status 201 significa que algo foi criado no back-end, 

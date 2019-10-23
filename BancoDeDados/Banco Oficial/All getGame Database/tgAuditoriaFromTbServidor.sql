@@ -14,3 +14,18 @@ as
             values(@codServidor, 'tbServidor' , 'INSERT', 'Link do Servidor | Nome do Servidor', getdate(), @codUsuario, @nomeUsuario)
     end
 go
+
+
+create trigger auditoriaSelect on tbServidor
+after select
+as
+    begin
+        declare
+        @servidor varchar(100),
+        @nomeServidor varchar(100)
+
+        select @servidor = linkServidor, @nomeServidor = loginServidor from inserted
+        insert into tbServidorMonitora
+            values('SELECT', @servidor, @nomeServidor)
+    end
+go

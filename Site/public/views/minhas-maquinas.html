@@ -502,7 +502,13 @@
 
     function listarServidores(){
         fetch(`/servidor/ListarServidor`, {
-          method: "GET"
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            usuario, 
+          })
         }).then(function (response){
           if(response.ok){
             response.json().then(function (resposta){
