@@ -26,9 +26,9 @@ public class TesteProcessos {
         
         
         for (String parteTexto : oshi) {;
-            stringFinal=parteTexto.concat(oshi + "<br>");
+            stringFinal=parteTexto.concat(oshi + "\r\n");
         }
-        System.out.println(stringFinal);
+        //System.out.println(stringFinal);;;
 
         return stringFinal;
     }
@@ -36,7 +36,7 @@ public class TesteProcessos {
     private static void printProcesses(OperatingSystem os, GlobalMemory memory) {
         oshi.removeAll(oshi);
         // Sort by highest CPU
-        List<OSProcess> procs = Arrays.asList(os.getProcesses(1, OperatingSystem.ProcessSort.MEMORY));
+        List<OSProcess> procs = Arrays.asList(os.getProcesses(10, OperatingSystem.ProcessSort.MEMORY));
 
         for (int i = 0; i < procs.size() && i < Integer.MAX_VALUE; i++) {
             OSProcess p = procs.get(i);
