@@ -3039,6 +3039,21 @@ input[type=submit].btn-block {
     width: 100%
 }
 
+.btn-dashboard{
+    width: 200px;
+
+}
+
+.a-dashboard{
+    text-decoration: none; 
+    color: white;
+}
+
+.a-dashboard:hover{
+    color: white;
+    text-decoration: none;
+}
+
 .fade {
     transition: opacity .15s linear
 }
