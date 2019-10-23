@@ -4,6 +4,35 @@ var router = express.Router();
 var banco = require('../app-banco');
 // não mexa nessas 3 linhas!
 
+router.post('/ListarServidorAdm', function (req, res, next) {
+  var usuario = req.body.usuario;
+  console.log(usuario);
+  console.log(banco.conexao);
+  banco.conectar().then(() => {
+    return banco.sql.query(`select codServidor, loginServidor, linkServidor from tbServidor`);
+  }).then(consulta => {
+
+    console.log(`Resultado da consulta de servidores: ${JSON.stringify(consulta.recordset)}`);
+
+    if (consulta.recordset.length == 0) {
+      res.status(404).send('Nenhum servidor encontrado');
+    } else {
+      res.send(consulta.recordset);
+    }
+
+  }).catch(err => {
+
+    var erro = `Erro na pesquisa de servidores: ${err}`;
+    console.error(erro);
+    res.status(500).send(erro);
+
+  }).finally(() => {
+    banco.sql.close();
+  });
+
+});
+
+
 router.post('/ListarServidor', function (req, res, next) {
     var usuario = req.body.usuario;
     console.log(usuario);
@@ -74,7 +103,7 @@ router.post('/ListarServidor', function (req, res, next) {
       if (cadastro_valido) {		  
           
         banco.sql.query(`insert into tbServidor (loginServidor, linkServidor, senhaServidor, codUsuario) values ('${login}','${link}','${senha}'
-          , (select codUsuario from tbUsuario where loginUsuario = '${usuario}'))`).then(function() {
+          , (select codUsuario from tbUsuario where nomeUsuario = '${usuario}'))`).then(function() {
         console.log(`Servidor cadastrado com sucesso!`);
         res.sendStatus(201); 
         // status 201 significa que algo foi criado no back-end, 

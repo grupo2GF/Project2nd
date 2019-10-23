@@ -395,7 +395,7 @@
 
       function listarServidores(){
         var usuario = usuarioLogado.textContent;
-        fetch(`/servidor/ListarServidor`, {
+        fetch(`/servidor/ListarServidorAdm`, {
           method: "POST",
           headers: {
             'Content-Type': 'application/json'
