@@ -1,7 +1,3 @@
-create table tbFuncionario (
-	  
-  );
-
 create table tbUsuario (
 	  codUsuario int primary key identity(1,1),
 	  nomeUsuario varchar(40) not null,

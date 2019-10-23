@@ -311,6 +311,9 @@
       </div>
       <!-- End of Main Content -->
 
+      <form style="visibility: hidden;" method="POST" id="formUsuario" onsubmit="">
+        <input name="usuarioAud" id="usuarioAud" type="text">
+      </form>
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
@@ -319,8 +322,6 @@
           </div>
         </div>
       </footer>
-      <!-- End of Footer -->
-
     </div>
     <!-- End of Content Wrapper -->
 
@@ -355,9 +356,8 @@
 <script>
 
     verificarAutenticacao();
-    listarServidores();
-    
     document.querySelector('#nomeUsuario').value = usuario;
+    listarServidores();
 
     function verificarAutenticacao() {
         usuario = sessionStorage.nome;
@@ -394,8 +394,15 @@
       }
 
       function listarServidores(){
+        var usuario = usuarioLogado.textContent;
         fetch(`/servidor/ListarServidor`, {
-          method: "GET"
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            usuario, 
+          })
         }).then(function (response){
           if(response.ok){
             response.json().then(function (resposta){
@@ -404,8 +411,7 @@
               document.getElementById(`lista_servidores`).innerHTML = '';
               for(const linha of resposta){
                 let conteudo = 
-                `
-                <tr>
+                `   <tr>
                       <td>${linha.loginServidor}</td>
                       <td>${linha.linkServidor}</td>
                     </tr>
