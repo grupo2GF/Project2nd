@@ -10,9 +10,8 @@
     "debug": "~2.6.9",
     "express": "^4.16.4",
     "morgan": "~1.9.1",
-    "mssql": "~5.1.0"
-  },
-  "devDependencies": {
+    "mssql": "~5.1.0",
     "nodemon": "^1.19.4"
-  }
+  },
+  "devDependencies": {}
 }

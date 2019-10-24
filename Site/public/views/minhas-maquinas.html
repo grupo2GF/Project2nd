@@ -487,7 +487,8 @@
 
   function selecionarServidor() {
     $('#modalSelecionarServidor').modal('hide');
-    lbNomeServidor.innerHTML = document.querySelector('#nomeServidor').innerText;
+    var a = nomeServidor.selectedOptions.valueOf(nomeServidor.selectedIndex);
+    lbNomeServidor.innerHTML = a.item(0).text;
     document.getElementById('myHorizontalBarChart').style.display = 'inline';
     document.getElementById('myAreaChart3').style.display = 'inline';
   }
@@ -563,7 +564,7 @@
           for (const linha of resposta) {
             let conteudo =
               `
-                <option id="${linha.loginServidor}" value="${linha.codServidor}">${linha.loginServidor}</option>
+                <option id="${linha.loginServidor}" value="${linha.loginServidor}">${linha.loginServidor}</option>
                 `;
             document.getElementById(`nomeServidor`).innerHTML += conteudo;
           }

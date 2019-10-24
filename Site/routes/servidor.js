@@ -38,10 +38,10 @@ router.post('/ListarServidor', function (req, res, next) {
     console.log(usuario);
     console.log(banco.conexao);
     banco.conectar().then(() => {
-      return banco.sql.query(`select s.codServidor, s.loginServidor, s.linkServidor, u.codUsuario, u.nomeUsuario from tbServidor as s
+      return banco.sql.query(`select s.codServidor, s.loginServidor, s.linkServidor from tbServidor as s
                                 inner join tbAcesso as a on (s.codServidor = a.codServidor)
                                     inner join tbUsuario as u on (a.codUsuario = u.codUsuario)
-                                      where u.nomeUsuario like '${usuario}' or (select permissaoUsuario from tbUsuario as us where us.nomeUsuario like '${usuario}') = 1`);
+                                      where u.nomeUsuario like '${usuario}'`);
     }).then(consulta => {
   
       console.log(`Resultado da consulta de servidores: ${JSON.stringify(consulta.recordset)}`);
