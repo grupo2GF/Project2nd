@@ -13,8 +13,7 @@
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
 
   <!-- Custom styles for this template-->
@@ -94,8 +93,8 @@
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search"
+                aria-describedby="basic-addon2">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="button">
                   <i class="fas fa-search fa-sm"></i>
@@ -114,8 +113,7 @@
                 <i class="fas fa-search fa-fw"></i>
               </a>
               <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                aria-labelledby="searchDropdown">
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search">
                   <div class="input-group">
                     <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -139,8 +137,7 @@
                 <span class="badge badge-danger badge-counter">3+</span>
               </a>
               <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                aria-labelledby="alertsDropdown">
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
                 </h6>
@@ -184,6 +181,8 @@
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
+
+
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
@@ -218,12 +217,20 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid" style="text-align: center">
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
             <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+          </div>
+
+          <!-- Page Heading -->
+          <div style="text-align: right; margin-right: 2.5%">
+            <div class="justify-content-between mb-4">
+              <a href="testePowerBI.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>
+                Generate Report</a>
+            </div>
           </div>
 
           <!-- Content Row -->
@@ -233,32 +240,28 @@
             <div class="col-xl-3 col-md-6 mb-4">
 
               <button class="btn btn-secondary btn-lg active btn-dashboard" onclick="clicarDisponibilidade()">
-              <a href="#" aria-pressed="true"
-                onclick="clicarDisponibilidade()" class="a-dashboard">Disponibilidade</a>
+                <a href="#" aria-pressed="true" onclick="clicarDisponibilidade()" class="a-dashboard">Disponibilidade</a>
               </button>
             </div>
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
-              <button class="btn btn-secondary btn-lg active btn-dashboard" onclick="clicarTempo()" >
-              <a href="#" aria-pressed="true"
-                onclick="clicarTempo()" class="a-dashboard">Tempo</a>
+              <button class="btn btn-secondary btn-lg active btn-dashboard" onclick="clicarTempo()">
+                <a href="#" aria-pressed="true" onclick="clicarTempo()" class="a-dashboard">Tempo</a>
               </button>
             </div>
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4" id="btnLucro" style="display:none">
               <button class="btn btn-secondary btn-lg active btn-dashboard" onclick="clicarLucro()">
-              <a href="#" role="button" aria-pressed="true"
-                onclick="clicarLucro()" class="a-dashboard">Perda</a>
+                <a href="#" role="button" aria-pressed="true" onclick="clicarLucro()" class="a-dashboard">Perda</a>
               </button>
             </div>
 
             <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4 ">
               <button class="btn btn-secondary btn-lg active btn-dashboard" onclick="clicarRelatorios()">
-              <a href="#" role="button" aria-pressed="true"
-                onclick="clicarRelatorios()" class="a-dashboard">Relatórios</a>
+                <a href="#" role="button" aria-pressed="true" onclick="clicarRelatorios()" class="a-dashboard">Relatórios</a>
               </button>
             </div>
           </div>
@@ -266,7 +269,7 @@
 
           <!-- Content Row -->
 
-          <div class="row">
+          <div class="row" style="text-align: center">
 
             <!-- Area Chart -->
             <div class="col-xl-12 col-lg-7" id="box1" style="display: none">
@@ -279,8 +282,7 @@
                       aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                      aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                       <div class="dropdown-header">Dropdown Header:</div>
                       <a class="dropdown-item" href="#">Action</a>
                       <a class="dropdown-item" href="#">Another action</a>
@@ -309,8 +311,7 @@
                       aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                      aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                       <div class="dropdown-header">Dropdown Header:</div>
                       <a class="dropdown-item" href="#">Action</a>
                       <a class="dropdown-item" href="#">Another action</a>
@@ -340,8 +341,7 @@
                       aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                      aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                       <div class="dropdown-header">Dropdown Header:</div>
                       <a class="dropdown-item" href="#">Action</a>
                       <a class="dropdown-item" href="#">Another action</a>
@@ -370,8 +370,7 @@
                       aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                      aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                       <div class="dropdown-header">Dropdown Header:</div>
                       <a class="dropdown-item" href="#">Action</a>
                       <a class="dropdown-item" href="#">Another action</a>
@@ -484,9 +483,9 @@
               <span>Auditar Servidores</span></a>
           </li>
         `;
-      btnLucro.style.display="block";
+      btnLucro.style.display = "block";
       document.getElementById(`acessoAdministrador`).innerHTML += conteudo;
-      
+
     } else {
       let conteudo = ``;
       document.getElementById(`acessoAdministrador`).innerHTML += conteudo;

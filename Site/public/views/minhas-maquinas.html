@@ -393,9 +393,15 @@
         </div>
         <!-- End of Main Content -->
 
-        <div class="container-fluid">
+        <div class="container-fluid" style="text-align: center;">
 
           <h1 class="h3 mb-0 text-gray-800" id="lbNomeServidor">Dashboard</h1>
+
+          <div class="row-fluid" style="text-align:center">
+            <div class="chart-area" style="width:500px; height: 200px">
+              <canvas style="display: none;" id="myHorizontalBarChart"></canvas>
+            </div>
+          </div>
 
         </div>
 
@@ -432,6 +438,8 @@
 
     <!-- Page level plugins -->
     <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <script src="js/demo/chart-horizontalBar-demo.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
@@ -474,6 +482,7 @@
   function selecionarServidor() {
     $('#modalSelecionarServidor').modal('hide');
     lbNomeServidor.innerHTML = document.querySelector('#nomeServidor').innerText;
+    document.getElementById('myHorizontalBarChart').style.display='block';
   }
 
   $(document).ready(function () {
