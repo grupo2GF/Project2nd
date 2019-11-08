@@ -24,7 +24,7 @@ public class TesteProcessos {
         printProcesses(os, hal.getMemory());
 
         
-        
+        StringBuffer s = new StringBuffer(oshi.size());
         for (String parteTexto : oshi) {;
             stringFinal=parteTexto.concat(oshi + "\r\n");
         }
